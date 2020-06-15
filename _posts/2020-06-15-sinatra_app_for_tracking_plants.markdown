@@ -1,7 +1,7 @@
 ---
 layout: post
 title:      "Sinatra app for tracking plants"
-date:       2020-06-15 16:33:22 +0000
+date:       2020-06-15 12:33:23 -0400
 permalink:  sinatra_app_for_tracking_plants
 ---
 
@@ -88,7 +88,8 @@ I implemented another helper method and used it in my get /my_plants route:
 
 *Route*
 
-```get '/my_plants' do
+```
+get '/my_plants' do
 if !Helpers.is_logged_in?(session)
 redirect '/login'
 end
