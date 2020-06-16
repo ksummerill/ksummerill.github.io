@@ -70,13 +70,15 @@ There were two things I needed to be certain of:
 1. Associate new plants with that signed in user
 2. Appropriately show plants that only that user had created
 
-I also wrote out each route where a creation or association was being made. For example, post /signup is where I create a Gardener and post /plants is where I create a plant. I knew I needed to comb through each one to determine where the error was. After lots of poking around in pry, I realized I needed to rethink my strategy and grab the Gardener object, then call .plants on that object to get all plants associated with that Gardener. Testing this theory out in pry:
+I also wrote out each route where a creation or association was being made. For example, post /signup is where I create a Gardener and post /plants is where I create a plant. I knew I needed to comb through each one to determine where the error was. After lots of poking around in pry, I realized I needed to rethink my strategy and grab the Gardener object, then call .plants on that object to get all plants associated with that Gardener. Testing this theory out in pry by running:
 
-![pry1](https://photos.google.com/photo/AF1QipO5OduZYslZLEPyVgGC4vO0YvNnCCAOGVY0YH0)
-![pry2](https://photos.google.com/photo/AF1QipOz_7j7RGJGdMddFZD5vUkepTnUv-_h1fvXtDA)
+```
+Plant.all.each do |plant|
+  puts plant.gardener_id
+end
+```
 
-
-I implemented another helper method and used it in my get /my_plants route:
+This printed out all the gardener_ids for each plant and returned all plant objects, which led me to implement another helper method and used it in my get /my_plants route:
 
 *Helper*
 ```
@@ -86,6 +88,8 @@ I implemented another helper method and used it in my get /my_plants route:
     @my_plants = @gardener.plants
   end
 ```
+
+I put a pry in this method to check how things were going. I ran @gardener which gave me back a gardener object. Then I ran @gardener.plants which successfully loaded every plant created by this gardener. I adjusted my `get '/my_plants' route to take into account the new helper method.
 
 *Route*
 
