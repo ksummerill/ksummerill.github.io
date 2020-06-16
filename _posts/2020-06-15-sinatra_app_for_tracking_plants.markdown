@@ -72,8 +72,9 @@ There were two things I needed to be certain of:
 
 I also wrote out each route where a creation or association was being made. For example, post /signup is where I create a Gardener and post /plants is where I create a plant. I knew I needed to comb through each one to determine where the error was. After lots of poking around in pry, I realized I needed to rethink my strategy and grab the Gardener object, then call .plants on that object to get all plants associated with that Gardener. Testing this theory out in pry:
 
-![pry1](https://drive.google.com/file/d/1AxU-wxbfDeMxXG9CvAQVBuJBvHGv6y8Z/view?usp=sharing)
-![pry2](https://drive.google.com/file/d/10ubZlJN91NRTkYUV8jzJGhDFlsm-MfWK/view?usp=sharing)
+![pry1](https://photos.google.com/photo/AF1QipO5OduZYslZLEPyVgGC4vO0YvNnCCAOGVY0YH0)
+![pry2](https://photos.google.com/photo/AF1QipOz_7j7RGJGdMddFZD5vUkepTnUv-_h1fvXtDA)
+
 
 I implemented another helper method and used it in my get /my_plants route:
 
